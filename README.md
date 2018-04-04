@@ -31,6 +31,36 @@ What do you mean there's nothing here? I don't believe that for a second. Let's 
 
 Now we are getting somewhere! We see there is a /secret directory, and on top of that we see /wp-admin! Let's browse to that. Since we are still enumerating things, let's probe around in the secret directory. to our luck we find a post by the user "admin".
 
+Thanks to top-hat-sec.com, I was able to spawn a reverse shell using the tutorial at http://forum.top-hat-sec.com/index.php?topic=5758.0
+
+With my new found admin credentials, I was able to upload the fake theme using the provided .zip file from the tutorial. 
+
+![Image](https://github.com/mattp789/mattp789.github.io/blob/master/images/fake_theme.png)
+
+Edit the Theme Header to send the shell to your IP over whatever port you choose.
+
+![Images](https://github.com/mattp789/mattp789.github.io/blob/master/images/set_theme.png)
+
+Now, let's open a netcat listener so we can catch the shell the fake theme is going to send us. Are you starting to get tingly yet?
+
+![Images](https://github.com/mattp789/mattp789.github.io/blob/master/images/netcat_listener.png)
+
+Go back to your WordPress themes and click Live Preview on the Fake theme, and you SHOULD catch a reverse shell.
+
+![Images](https://github.com/mattp789/mattp789.github.io/blob/master/images/rev_shell.png)
+
+We got shell!!! This is great, but we can't really do much because without a tty shell we can't do a lot of tasks we'd like to do. According to the same tutorial from before we can run the following commands to upgrade our shell:
+
+python -c 'import pty; pty.spawn("/bin/bash")'
+export TERM=linux
+
+![Images](https://github.com/mattp789/mattp789.github.io/blob/master/images/upgrade_shell.png)
+To use this theme, you must edit the header file to send the shell to your IP on the port you are listening on.
+
+
+
+
+
 ![Image](https://github.com/mattp789/mattp789.github.io/blob/master/images/user.png)
 
 I am no expert, but I'd be willing to be this is our admin user. so let's take that over to /secret/wp-admin
