@@ -16,13 +16,13 @@ Now it's time to Enmerate some services and possible vulnerabilities. First lets
 
 I had originally run a more verbose nmap scan, but for the sake of time (and this write-up) I will run a typical -A scan since I know there are no high ports open on this box.
 
-![Image](https://mattp789.github.io/images/images/nmap.png)
+![Image](https://mattp789.github.io/imagesnmap.png)
 
 So, we see ssh, ftp, and apache open. I found that using "anonymous" to open an FTP session worked but I got "331 Anonymous login ok, send your complete email address as your password." I could not find a way to use a password as a logon, so I decided to move onto attacking port 80.
 
 LET'S BROWSE TO THE SITE!
 
-![Image](https://mattp789.github.io/images/images/webpage.png)
+![Image](https://mattp789.github.io/images/webpage.png)
 
 What do you mean there's nothing here? I don't believe that for a second. Let's hit the page with "Nikto" and "Dirb" and see what we get.
 
