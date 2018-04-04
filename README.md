@@ -1,37 +1,43 @@
-## Welcome to GitHub Pages
+## Pentest Basics
 
-You can use the [editor on GitHub](https://github.com/mattp789/mattp789.github.io/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+This is my first box that I have gotten root on with no walkthroughs, so I am pretty excited!
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+I am going to walk you through my process from discovering the system "vtsec" to getting root, and I promise I'll cut out all the boring and frustrating parts!
 
-### Markdown
+### Discovery
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+After setting up the Machine in virtual box, we need to find out what IP the box has.
+using netdiscover -r {ip range} gives us a list of hosts on our network.
+  
+![Image]()
 
-```markdown
-Syntax highlighted code block
+### Enumeration
+Now it's time to Enmerate some services and possible vulnerabilities. First lets run our nmap scan.
 
-# Header 1
-## Header 2
-### Header 3
+I had originally run a more verbose nmap scan, but for the sake of time (and this write-up) I will run a typical -A scan since I know there are no high ports open on this box.
 
-- Bulleted
-- List
+![Image]()
 
-1. Numbered
-2. List
+So, we see ssh, ftp, and apache open. I found that using "anonymous" to open an FTP session worked but I got "331 Anonymous login ok, send your complete email address as your password." I could not find a way to use a password as a logon, so I decided to move onto attacking port 80.
 
-**Bold** and _Italic_ and `Code` text
+LET'S BROWSE TO THE SITE!
 
-[Link](url) and ![Image](src)
-```
+![Image]()
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+What do you mean there's nothing here? I don't believe that for a second. Let's hit the page with "Nikto" and "Dirb" and see what we get.
 
-### Jekyll Themes
+![Image]()
+![Image]()
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/mattp789/mattp789.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+Now we are getting somewhere! We see there is a /secret directory, and on top of that we see /wp-admin! Let's browse to that. Since we are still enumerating things, let's probe around in the secret directory. to our luck we find a post by the user "admin".
 
-### Support or Contact
+![Image]()
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+I am no expert, but I'd be willing to be this is our admin user. so let's take that over to /secret/wp-admin
+
+![Image]()
+
+Now from here, I was able to login as admin, and I'd love to tell you that is was by bruteforcing, or using any cool tools to get in....but turns out guessing that the password may be admin was correct! No one said this would be too difficult. A lot of my research, time, and frustration went into the next couple of steps.
+
+Now that we are in the wordpress manager as admin, we know that wordpress is probably vulnerable to some sort of reverse shell type of attack. As it turns out it was. 
+
