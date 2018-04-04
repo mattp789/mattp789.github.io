@@ -39,7 +39,7 @@ With my new found admin credentials, I was able to upload the fake theme using t
 
 Edit the Theme Header to send the shell to your IP over whatever port you choose.
 
-![Images](https://mattp789.github.io/images/images/set_theme.png)
+![Images](https://mattp789.github.io/images/set_theme.png)
 
 Now, let's open a netcat listener so we can catch the shell the fake theme is going to send us. Are you starting to get tingly yet?
 
