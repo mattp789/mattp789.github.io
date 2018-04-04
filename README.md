@@ -43,7 +43,7 @@ Edit the Theme Header to send the shell to your IP over whatever port you choose
 
 Now, let's open a netcat listener so we can catch the shell the fake theme is going to send us. Are you starting to get tingly yet?
 
-![Images](hhttps://mattp789.github.io/images/netcat_listener.png)
+![Images](https://mattp789.github.io/images/netcat_listener.png)
 
 Go back to your WordPress themes and click Live Preview on the Fake theme, and you SHOULD catch a reverse shell.
 
