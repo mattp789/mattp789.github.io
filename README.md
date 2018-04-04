@@ -52,22 +52,10 @@ Go back to your WordPress themes and click Live Preview on the Fake theme, and y
 We got shell!!! This is great, but we can't really do much because without a tty shell we can't do a lot of tasks we'd like to do. According to the same tutorial from before we can run the following commands to upgrade our shell:
 
 python -c 'import pty; pty.spawn("/bin/bash")'
+
 export TERM=linux
 
 ![Images](https://github.com/mattp789/mattp789.github.io/blob/master/images/upgrade_shell.png)
+
 To use this theme, you must edit the header file to send the shell to your IP on the port you are listening on.
-
-
-
-
-
-![Image](https://github.com/mattp789/mattp789.github.io/blob/master/images/user.png)
-
-I am no expert, but I'd be willing to be this is our admin user. so let's take that over to /secret/wp-admin
-
-![Image](https://github.com/mattp789/mattp789.github.io/blob/master/images/admin.png)
-
-Now from here, I was able to login as admin, and I'd love to tell you that is was by bruteforcing, or using any cool tools to get in....but turns out guessing that the password may be admin was correct! No one said this would be too difficult. A lot of my research, time, and frustration went into the next couple of steps.
-
-Now that we are in the wordpress manager as admin, it is likely that wordpress is probably vulnerable to some sort of reverse shell type of attack. As it turns out it was. 
 
