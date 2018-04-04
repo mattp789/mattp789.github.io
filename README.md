@@ -57,5 +57,45 @@ export TERM=linux
 
 ![Images](https://github.com/mattp789/mattp789.github.io/blob/master/images/upgrade_shell.png)
 
-To use this theme, you must edit the header file to send the shell to your IP on the port you are listening on.
+
+After poking and prodding around for far too long, I nearly screamed out loud "LOW HANGING FRUIT!" Let's see if we have access to the passwd and shadow files. WE DO!
+
+$cat /etc/passwd
+
+![Images](https://github.com/mattp789/mattp789.github.io/blob/master/images/passwd.png)
+
+$cat /etc/shadow
+
+![Images](https://github.com/mattp789/mattp789.github.io/blob/master/images/shadow.png)
+
+We can see we have a user marlinspike. I copied the output of the passwd and the shadow to a file and ran unshadow to get it ready for John the Ripper.
+
+Unshadow takes the input of your passwd and shadow files and outputs it to a file ready for John the ripper to crack.
+
+![Images](https://github.com/mattp789/mattp789.github.io/blob/master/images/unshadow.png)
+
+Now that we have the unshadowed file, we can run John on it and hopefully get our password for marlinspike.
+
+![Images](https://github.com/mattp789/mattp789.github.io/blob/master/images/john.png)
+
+
+Of course the password is marlinspike...makes all that work seem a bit trival, but oh well this was great practice!! Let's open an SSH session as marlinspike to see what we can do.
+
+![Images](https://github.com/mattp789/mattp789.github.io/blob/master/images/login.png)
+
+Now it's time to look for some privelege escalation vulnerabilities in this Linux distribution....but first, we may be able to save ourselves some effort by seeing what sudo priveleges Mr. Marlinspike has.
+
+![Images](https://github.com/mattp789/mattp789.github.io/blob/master/images/sudo.png)
+
+
+ALL:ALL that means we should be able to su to root
+
+![Images](https://github.com/mattp789/mattp789.github.io/blob/master/images/root.png)
+
+And consider it PWNED!!
+
+Thanks for reading. I had a blast testing this box. My goal here was to not use metasploit in any way and not look at anyone else's walkthroughs for this box. 
+
+Hope you enjoy. Good luck on your next Hack.
+
 
