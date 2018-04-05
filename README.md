@@ -31,6 +31,16 @@ What do you mean there's nothing here? I don't believe that for a second. Let's 
 
 Now we are getting somewhere! We see there is a /secret directory, and on top of that we see /wp-admin! Let's browse to that. Since we are still enumerating things, let's probe around in the secret directory. to our luck we find a post by the user "admin".
 
+![Image](https://mattp789.github.io/images/user.png)
+
+I'm no expert, but I think it is safe to say that this is our admin user. So we can take that over to the wp-admin page
+
+![Image](https://mattp789.github.io/images/admin.png)
+
+I was going to do some brute forcing with hydra or wpscan, but after getting frustrated with hydra, I decided to try and guess the password....turns out it was admin. No one said you had to be a security expert to root this box.
+
+Now that we have access to the administrative page of the wordpress site, we can probably guess that it is somehow vulnerable. My first guess was a reverse shell injection and it turns out I was right!
+
 Thanks to top-hat-sec.com, I was able to spawn a reverse shell using the tutorial at http://forum.top-hat-sec.com/index.php?topic=5758.0
 
 With my new found admin credentials, I was able to upload the fake theme using the provided .zip file from the tutorial. 
