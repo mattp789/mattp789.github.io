@@ -12,7 +12,7 @@ using netdiscover -r {ip range} gives us a list of hosts on our network.
 ![Image](https://mattp789.github.io/images/discovery.png)
 
 ### Enumeration
-Now it's time to Enmerate some services and possible vulnerabilities. First lets run our nmap scan.
+Now it's time to Enmuerate some services and possible vulnerabilities. First lets run our nmap scan.
 
 I had originally run a more verbose nmap scan, but for the sake of time (and this write-up) I will run a typical -A scan since I know there are no high ports open on this box.
 
